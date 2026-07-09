@@ -360,7 +360,7 @@ select option {
 /* RESPONSIVENESS */
 @media (max-width: 900px) {
   .dashboard-wrapper {
-    flex-direction: column;
+    flex-direction: column-reverse; /* Membalik urutan: Form di atas, Sidebar di bawah */
   }
   .sidebar {
     width: 100%;
@@ -373,7 +373,9 @@ select option {
   .stats-sidebar-list {
     flex-direction: row;
     flex-wrap: wrap;
-    max-height: 250px; /* limit height so it doesn't push form down too far */
+    max-height: 200px;
+    overflow-y: auto; /* Allow scrolling if it overflows */
+    padding-right: 0.5rem; /* Space for scrollbar */
   }
   .stat-item {
     flex: 1 1 calc(50% - 0.5rem);
@@ -401,8 +403,20 @@ select option {
   .dashboard-header h1 {
     font-size: 1.8rem;
   }
+  .stats-sidebar-list {
+    max-height: 150px; /* Make it very small on HP */
+    overflow-y: auto;
+  }
   .stat-item {
-    flex: 1 1 100%;
+    flex: 1 1 calc(50% - 0.5rem); /* Keep 2 columns on HP */
+    padding: 0.6rem 0.8rem;
+  }
+  .stat-item .stat-class {
+    font-size: 0.95rem;
+  }
+  .stat-count {
+    padding: 0.15rem 0.4rem;
+    font-size: 0.8rem;
   }
   .form-section {
     padding: 1.5rem 1rem;
