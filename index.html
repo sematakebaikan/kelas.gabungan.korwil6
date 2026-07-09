@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Kehadiran Kelas Gabungan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+</head>
+<body>
+  <div class="dashboard-wrapper">
+    <aside class="sidebar stats-section">
+      <div class="sidebar-header">
+        <h2>Konfirmasi Kehadiran</h2>
+        <div class="total-boxes">
+          <div class="total-box box-hadir">
+            <p>Hadir</p>
+            <div class="total-number" id="total-hadir">...</div>
+          </div>
+          <div class="total-box box-berhalangan">
+            <p>Berhalangan</p>
+            <div class="total-number" id="total-berhalangan">...</div>
+          </div>
+        </div>
+      </div>
+      <div id="stats-grid" class="stats-sidebar-list">
+        <!-- Stats will be populated here by JS -->
+        <div class="loading">Memuat data peserta...</div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="dashboard-header">
+        <h1>Dashboard Kelas Gabungan</h1>
+        <p>Korwil 6 - Data diperbarui otomatis secara real-time</p>
+      </header>
+
+      <section class="form-section">
+        <div class="form-header">
+          <h2>Isi Data Kehadiran</h2>
+          <p>Silakan isi formulir di bawah ini untuk mengonfirmasi kehadiran Anda.</p>
+        </div>
+        
+        <!-- Formulir Kustom -->
+        <form class="custom-form" id="attendance-form" target="hidden_iframe" action="https://docs.google.com/forms/d/e/1FAIpQLSfWXJdyy4Fnw0zgi_7oRUcx9VBkKH7DFbgDhsHmr0KH4N2rdg/formResponse" method="POST">
+          
+          <div class="form-group">
+            <label for="namaLengkap">Nama Lengkap</label>
+            <!-- GANTI entry.XXXXXX dengan ID yang tepat dari Google Form -->
+            <input type="text" id="namaLengkap" name="entry.90647002" placeholder="Masukkan nama lengkap Anda" required>
+          </div>
+
+          <div class="form-group">
+            <label for="asalKelas">Asal Kelas/Grup</label>
+            <!-- GANTI entry.XXXXXX dengan ID yang tepat dari Google Form -->
+            <select id="asalKelas" name="entry.1605805274" required>
+              <option value="" disabled selected>Pilih kelas Anda</option>
+              <option value="AA304">AA304</option>
+              <option value="AK313">AK313</option>
+              <option value="AK314">AK314</option>
+              <option value="AK315">AK315</option>
+              <option value="AK316">AK316</option>
+              <option value="AK317">AK317</option>
+              <option value="AK332">AK332</option>
+              <option value="AK335">AK335</option>
+              <option value="AK336">AK336</option>
+              <option value="IA307">IA307</option>
+              <option value="IA308">IA308</option>
+              <option value="IK320">IK320</option>
+              <option value="IK321">IK321</option>
+              <option value="IK322">IK322</option>
+              <option value="IK332">IK332</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="noWA">Nomor Whatsapp (WA)</label>
+            <!-- GANTI entry.XXXXXX dengan ID yang tepat dari Google Form -->
+            <input type="tel" id="noWA" name="entry.584975211" placeholder="Contoh: 08123456789" required>
+          </div>
+
+          <div class="form-group">
+            <label>Konfirmasi Kehadiran</label>
+            <div class="radio-group">
+              <label class="radio-card">
+                <!-- GANTI entry.XXXXXX dengan ID yang tepat dari Google Form -->
+                <input type="radio" name="entry.1064663958" value="Siap Hadir" required>
+                <div class="radio-content">
+                  <span class="icon">✅</span>
+                  <span>Siap Hadir</span>
+                </div>
+              </label>
+              <label class="radio-card">
+                <!-- GANTI entry.XXXXXX dengan ID yang tepat dari Google Form -->
+                <input type="radio" name="entry.1064663958" value="Berhalangan">
+                <div class="radio-content">
+                  <span class="icon">❌</span>
+                  <span>Berhalangan (Izin Syari ke ketua kelas)</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <button type="submit" class="submit-btn" id="submit-btn">Kirim Konfirmasi</button>
+          
+          <div id="form-success" class="success-message" style="display: none;">
+            Terima kasih! Kehadiran Anda telah tercatat.
+          </div>
+        </form>
+
+        <!-- Hidden Iframe to prevent page redirect on submit -->
+        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted){onFormSubmitSuccess();}"></iframe>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
