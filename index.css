@@ -404,7 +404,7 @@ select option {
     font-size: 1.8rem;
   }
   .stats-sidebar-list {
-    max-height: 150px; /* Make it very small on HP */
+    max-height: 100px; /* Only 2 rows visible */
     overflow-y: auto;
   }
   .stat-item {
