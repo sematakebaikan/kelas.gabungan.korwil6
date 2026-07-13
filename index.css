@@ -55,10 +55,10 @@ body {
 }
 
 .sidebar-header h2 {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: #fff;
-  margin-bottom: 1rem;
+  margin-bottom: 0.8rem;
 }
 
 .total-boxes {
@@ -70,7 +70,7 @@ body {
 .total-box {
   flex: 1;
   border-radius: 12px;
-  padding: 1rem 0.5rem;
+  padding: 0.6rem 0.4rem;
   text-align: center;
 }
 
@@ -88,7 +88,7 @@ body {
 }
 
 .box-hadir .total-number {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: #86efac;
 }
@@ -246,8 +246,8 @@ body {
 }
 
 .form-header h2 {
-  font-size: 1.8rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.4rem;
+  margin-bottom: 0.4rem;
 }
 
 .form-header p {
@@ -278,10 +278,10 @@ select {
   background: #fdfbf7; /* Putih susu */
   border: 1px solid var(--border-color);
   border-radius: 12px;
-  padding: 1rem 1.2rem;
+  padding: 0.8rem 1rem;
   color: #111827; /* Teks gelap */
   font-family: var(--font-main);
-  font-size: 1rem;
+  font-size: 0.95rem;
   transition: all 0.3s ease;
   outline: none;
 }
@@ -349,13 +349,13 @@ select option {
   color: white;
   border: none;
   border-radius: 12px;
-  padding: 1.2rem;
-  font-size: 1.1rem;
+  padding: 0.9rem;
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   font-family: var(--font-main);
   transition: all 0.3s ease;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 }
 
 .submit-btn:hover {
@@ -379,40 +379,50 @@ select option {
 
 /* RESPONSIVENESS */
 @media (max-width: 900px) {
+  body {
+    overflow: hidden; /* Mencegah scroll body agar split screen bekerja sempurna */
+  }
   .dashboard-wrapper {
-    flex-direction: column-reverse; /* Membalik urutan: Form di atas, Sidebar di bawah */
+    flex-direction: column-reverse; 
+    height: 100vh; /* Setinggi layar penuh */
+    overflow: hidden;
   }
   .sidebar {
     width: 100%;
-    height: auto;
+    flex: 1; /* Membagi layar 50% */
+    height: 50vh;
     position: relative;
     border-right: none;
     border-bottom: 1px solid var(--border-color);
-    padding: 1.5rem;
+    padding: 1rem;
+    overflow-y: auto; /* Bisa di-scroll sendiri */
   }
   .stats-sidebar-list {
     flex-direction: row;
     flex-wrap: wrap;
-    max-height: 200px;
-    overflow-y: auto; /* Allow scrolling if it overflows */
-    padding-right: 0.5rem; /* Space for scrollbar */
+    max-height: none; /* Biarkan sidebar yang scroll */
+    overflow-y: visible;
+    padding-right: 0.5rem; 
   }
   .stat-item {
     flex: 1 1 calc(50% - 0.5rem);
   }
   .main-content {
-    padding: 1.5rem 1rem;
+    flex: 1; /* Membagi layar 50% */
+    height: 50vh;
+    padding: 1rem;
+    overflow-y: auto; /* Bisa di-scroll sendiri */
   }
   .dashboard-header {
-    padding: 1.5rem 0 1rem 0;
-    margin-top: -1.5rem;
-    margin-bottom: 1.5rem;
+    padding: 1rem 0 0.5rem 0;
+    margin-top: -1rem;
+    margin-bottom: 1rem;
   }
   .dashboard-header h1 {
-    font-size: 2.2rem;
+    font-size: 1.8rem;
   }
   .form-section {
-    padding: 2rem;
+    padding: 1.5rem;
   }
   .radio-group {
     grid-template-columns: 1fr;
