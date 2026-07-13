@@ -414,8 +414,9 @@ select option {
     overflow-y: auto; /* Bisa di-scroll sendiri */
   }
   .dashboard-header {
+    position: static; /* Biarkan title scroll normal di HP, tidak menutupi layar */
     padding: 1rem 0 0.5rem 0;
-    margin-top: -1rem;
+    margin-top: 0; /* Hapus margin negatif */
     margin-bottom: 1rem;
   }
   .dashboard-header h1 {
@@ -434,8 +435,8 @@ select option {
     font-size: 1.8rem;
   }
   .stats-sidebar-list {
-    max-height: 100px; /* Only 2 rows visible */
-    overflow-y: auto;
+    max-height: none; /* Biarkan sidebar 35vh yang mengatur scroll */
+    overflow-y: visible;
   }
   .stat-item {
     flex: 1 1 calc(50% - 0.5rem); /* Keep 2 columns on HP */
