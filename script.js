@@ -37,8 +37,7 @@ function showError() {
 
 function processData(table) {
   // Find column indices
-  let classColIdx = -1;
-  let attendanceColIdx = -1;
+  let nameColIdx = -1;
   
   if (table.cols) {
     for (let i = 0; i < table.cols.length; i++) {
@@ -49,14 +48,18 @@ function processData(table) {
       if (colLabel.includes("kehadiran")) {
         attendanceColIdx = i;
       }
+      if (colLabel.includes("nama")) {
+        nameColIdx = i;
+      }
     }
   }
   
   if (classColIdx === -1) classColIdx = 2;
   if (attendanceColIdx === -1) attendanceColIdx = 4;
+  if (nameColIdx === -1) nameColIdx = 1;
 
   const counts = {};
-  TARGET_CLASSES.forEach(cls => counts[cls] = { hadir: 0, berhalangan: 0 });
+  TARGET_CLASSES.forEach(cls => counts[cls] = { hadir: 0, berhalangan: 0, names: [] });
   let totalHadir = 0;
   let totalBerhalangan = 0;
 
@@ -65,9 +68,12 @@ function processData(table) {
       if (row.c && row.c[classColIdx] && row.c[attendanceColIdx]) {
         const cls = row.c[classColIdx].v;
         const status = row.c[attendanceColIdx].v || "";
+        const name = (row.c[nameColIdx] && row.c[nameColIdx].v) ? row.c[nameColIdx].v : "Anonim";
+
         if (cls && TARGET_CLASSES.includes(cls)) {
           if (status.includes("Hadir")) {
             counts[cls].hadir++;
+            counts[cls].names.push(name);
             totalHadir++;
           } else if (status.includes("Berhalangan")) {
             counts[cls].berhalangan++;
@@ -95,6 +101,9 @@ function renderStats(counts, totalHadir, totalBerhalangan) {
     const item = document.createElement('div');
     item.className = 'stat-item';
     
+    const headerDiv = document.createElement('div');
+    headerDiv.className = 'stat-item-header';
+
     const classDiv = document.createElement('div');
     classDiv.className = 'stat-class';
     classDiv.textContent = cls;
@@ -107,16 +116,23 @@ function renderStats(counts, totalHadir, totalBerhalangan) {
     hadirBadge.title = 'Siap Hadir';
     hadirBadge.textContent = counts[cls].hadir;
     
-    const berhalBadge = document.createElement('div');
-    berhalBadge.className = 'stat-count count-berhalangan';
-    berhalBadge.title = 'Berhalangan';
-    berhalBadge.textContent = counts[cls].berhalangan;
-
     badges.appendChild(hadirBadge);
-    badges.appendChild(berhalBadge);
 
-    item.appendChild(classDiv);
-    item.appendChild(badges);
+    headerDiv.appendChild(classDiv);
+    headerDiv.appendChild(badges);
+    item.appendChild(headerDiv);
+
+    // List of names
+    if (counts[cls].names.length > 0) {
+      const nameList = document.createElement('ul');
+      nameList.className = 'stat-names-list';
+      counts[cls].names.forEach(n => {
+        const li = document.createElement('li');
+        li.textContent = n;
+        nameList.appendChild(li);
+      });
+      item.appendChild(nameList);
+    }
     
     grid.appendChild(item);
   });
