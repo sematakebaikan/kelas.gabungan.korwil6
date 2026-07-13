@@ -389,8 +389,8 @@ select option {
   }
   .sidebar {
     width: 100%;
-    flex: 1; /* Membagi layar 50% */
-    height: 50vh;
+    flex: none; /* Ubah proporsi */
+    height: 35vh; /* 35% Layar untuk Rekap */
     position: relative;
     border-right: none;
     border-bottom: 1px solid var(--border-color);
@@ -408,8 +408,8 @@ select option {
     flex: 1 1 calc(50% - 0.5rem);
   }
   .main-content {
-    flex: 1; /* Membagi layar 50% */
-    height: 50vh;
+    flex: none; /* Ubah proporsi */
+    height: 65vh; /* 65% Layar untuk Form Isian */
     padding: 1rem;
     overflow-y: auto; /* Bisa di-scroll sendiri */
   }
