@@ -107,7 +107,7 @@ body {
 }
 
 .box-berhalangan .total-number {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: #fca5a5;
 }
@@ -383,7 +383,7 @@ select option {
     overflow: hidden; /* Mencegah scroll body agar split screen bekerja sempurna */
   }
   .dashboard-wrapper {
-    flex-direction: column-reverse; 
+    flex-direction: column; 
     height: 100vh; /* Setinggi layar penuh */
     overflow: hidden;
   }
