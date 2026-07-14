@@ -3,7 +3,7 @@ const JSON_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx
 
 const TARGET_CLASSES = [
   "AA304", "AK313", "AK314", "AK315", "AK316", "AK317", 
-  "AK332", "AK335", "AK336", "IA307", "IA308", 
+  "AK332", "AK335", "AK338", "IA307", "IA308", 
   "IK320", "IK321", "IK322", "IK332"
 ];
 
